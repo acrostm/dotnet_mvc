@@ -1,0 +1,28 @@
+@model List<LibraryManagement.Models.Book>
+
+<h2>Books in Library</h2>
+<a href="@Url.Action("Create", "Post")" class="btn btn-primary">Create Book</a>
+
+<table class="table">
+        <thead>
+                <tr>
+                        <th>Id</th>
+                        <th>Title</th>
+                        <th>Author Id</th>
+                        <th>Library Branch Id</th>
+                        <th>Create At</th>
+                    </tr>
+            </thead>
+        <tbody>
+        @foreach (var book in Model)
+        {
+                        <tr>
+                                <td>@book.BookId</td>
+                                <td>@book.Title</td>
+                                <td>@book.AuthorId</td>
+                                <td>@book.LibraryBranchId</td>
+                                <td>@book.CreatedAt.ToString("yyyy-MM-dd HH:mm:ss")</td>
+                            </tr>
+        }
+            </tbody>
+</table>
