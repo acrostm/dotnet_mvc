@@ -11,6 +11,6 @@ namespace LibraryManagement.Models
         public required string Title { get; set; }
         public int AuthorId { get; set; }
         public int? LibraryBranchId { get; set; }
-        public DateTime CreateAt { get; set; }
+        public DateTime CreatedAt { get; set; }
     }
 }

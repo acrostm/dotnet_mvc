@@ -1,0 +1,41 @@
+# ASP.NET Core
+.vscode/
+bin/
+obj/
+
+# ASP.NET MVC specific
+*.suo
+*.user
+*.cache
+*.dll
+*.exe
+*.pdb
+*.log
+*.vscode
+*.npm-debug.log
+node_modules/
+wwwroot/lib/
+
+# Entity Framework
+# /app_data/
+# *.sqlite
+# *.sqlite3
+
+# Visual Studio files
+*.vscode
+*.vs
+*.suo
+*.sln
+*.csproj.user
+
+# Rider files
+.idea/
+*.sln.iml
+*.ipr
+*.iws
+
+# OSX
+.DS_Store
+
+# Windows
+Thumbs.db
