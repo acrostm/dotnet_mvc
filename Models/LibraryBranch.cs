@@ -1,6 +1,12 @@
 // LibraryBranch.cs
-public class LibraryBranch
+using System.ComponentModel.DataAnnotations;
+
+namespace LibraryManagement.Models
 {
-    public int LibraryBranchId { get; set; }
-    public string BranchName { get; set; }
+    public class LibraryBranch
+    {
+        [Key]
+        public int LibraryBranchId { get; set; }
+        public string BranchName { get; set; }
+    }
 }

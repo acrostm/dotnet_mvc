@@ -1,6 +1,12 @@
 // Author.cs
-public class Author
+using System.ComponentModel.DataAnnotations;
+
+namespace LibraryManagement.Models
 {
-    public int AuthorId { get; set; }
-    public string Name { get; set; }
+    public class Author
+    {
+        [Key]
+        public int AuthorId { get; set; }
+        public string Name { get; set; }
+    }
 }
