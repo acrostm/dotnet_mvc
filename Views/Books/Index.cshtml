@@ -1,27 +1,32 @@
-@model List<LibraryManagement.Models.Books>
+<!-- Index.cshtml -->
+@model IEnumerable<LibraryManagement.Models.Books>
 
-<h2>Books in Library</h2>
-<a href="@Url.Action("Create", "Post")" class="btn btn-primary">Create Book</a>
+<h1>Books List</h1>
+
+<p>
+    <a asp-action="Create" class="btn btn-primary">Create New</a>
+</p>
 
 <table class="table">
-        <thead>
-                <tr>
-                        <th>Id</th>
-                        <th>Title</th>
-                        <th>Author Id</th>
-                        <th>Library Branch Id</th>
-                        <th>Create At</th>
-                    </tr>
-            </thead>
-        <tbody>
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>Title</th>
+            <th>Branch</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
         @foreach (var book in Model)
         {
-                        <tr>
-                                <td>@book.BookId</td>
-                                <td>@book.Title</td>
-                                <td>@book.AuthorId</td>
-                                <td>@book.LibraryBranchId</td>
-                            </tr>
+            <tr>
+                <td>@book.BookId</td>
+                <td>@book.Title</td>
+                <td>@(book.Branch != null ? book.Branch.BranchName : "N/A")</td>
+                <td>
+                    <a asp-action="Edit" asp-route-id="@book.BookId">Edit</a>
+                </td>
+            </tr>
         }
-            </tbody>
+    </tbody>
 </table>

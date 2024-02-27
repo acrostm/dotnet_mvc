@@ -16,7 +16,22 @@ namespace LibraryManagement.Data
         public DbSet<Models.Authors> Authors { get; set; }
         public DbSet<Models.Customers> Customers { get; set; }
         public DbSet<Models.LibraryBranches> LibraryBranches { get; set; }
-        
+
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            modelBuilder.Entity<Books>()
+                .HasOne(b => b.Author)
+                .WithMany()
+                .HasForeignKey(b => b.AuthorId);
+
+            modelBuilder.Entity<Books>()
+                .HasOne(b => b.LibraryBranch)
+                .WithMany()
+                .HasForeignKey(b => b.LibraryBranchId);
+
+            base.OnModelCreating(modelBuilder);
+        }
+
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             optionsBuilder.UseSqlite(_configuration.GetConnectionString("DefaultConnection"));

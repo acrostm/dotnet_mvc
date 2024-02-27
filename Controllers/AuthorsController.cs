@@ -1,8 +1,8 @@
+// AuthorController.cs
 using Microsoft.AspNetCore.Mvc;
-using System;
-using System.Linq;
+using Microsoft.EntityFrameworkCore;
 using LibraryManagement.Models;
-using LibraryManagement.ViewModels;
+using System.Linq;
 using LibraryManagement.Data;
 
 namespace LibraryManagement.Controllers
@@ -15,24 +15,124 @@ namespace LibraryManagement.Controllers
         {
             _dbContext = dbContext;
         }
-        
-        public IActionResult Details(int id)
+
+        public async Task<IActionResult> Index(string searchString)
         {
-            // Simulated data access
-            var author = _dbContext.Authors.FirstOrDefault(a => a.AuthorId == id);
+            var authors = from a in _dbContext.Authors
+                          select a;
+
+            if (!string.IsNullOrEmpty(searchString))
+            {
+                authors = authors.Where(a => a.Name.Contains(searchString));
+            }
+
+            return View(await authors.ToListAsync());
+        }
+
+        public IActionResult Create()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> Create([Bind("AuthorId,Name")] Authors author)
+        {
+            if (ModelState.IsValid)
+            {
+                if (AuthorExists(author.AuthorId))
+                {
+                    ModelState.AddModelError("AuthorId", "ID already exists.");
+                    return View(author);
+                }
+
+                _dbContext.Add(author);
+                await _dbContext.SaveChangesAsync();
+                return RedirectToAction(nameof(Index));
+            }
+            return View(author);
+        }
+
+        public async Task<IActionResult> Edit(int? id)
+        {
+            if (id == null)
+            {
+                return NotFound();
+            }
+
+            var author = await _dbContext.Authors.FindAsync(id);
 
             if (author == null)
             {
                 return NotFound();
             }
 
-            AuthorsViewModel viewModel = new AuthorsViewModel
-            {
-                AuthorId = author.AuthorId,
-                Name = author.Name
-            };
+            return View(author);
+        }
 
-            return View(viewModel);
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> Edit(int id, [Bind("AuthorId,Name")] Authors author)
+        {
+            if (id != author.AuthorId)
+            {
+                return NotFound();
+            }
+
+            if (ModelState.IsValid)
+            {
+                try
+                {
+                    _dbContext.Update(author);
+                    await _dbContext.SaveChangesAsync();
+                }
+                catch (DbUpdateConcurrencyException)
+                {
+                    if (!AuthorExists(author.AuthorId))
+                    {
+                        return NotFound();
+                    }
+                    else
+                    {
+                        throw;
+                    }
+                }
+                return RedirectToAction(nameof(Index));
+            }
+            return View(author);
+        }
+
+        public async Task<IActionResult> Delete(int? id)
+        {
+            if (id == null)
+            {
+                return NotFound();
+            }
+
+            var author = await _dbContext.Authors
+                .FirstOrDefaultAsync(m => m.AuthorId == id);
+
+            if (author == null)
+            {
+                return NotFound();
+            }
+
+            return View(author);
+        }
+
+        [HttpPost, ActionName("Delete")]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> DeleteConfirmed(int id)
+        {
+            var author = await _dbContext.Authors.FindAsync(id);
+            _dbContext.Authors.Remove(author);
+            await _dbContext.SaveChangesAsync();
+            return RedirectToAction(nameof(Index));
+        }
+
+        private bool AuthorExists(int id)
+        {
+            return _dbContext.Authors.Any(e => e.AuthorId == id);
         }
     }
 }

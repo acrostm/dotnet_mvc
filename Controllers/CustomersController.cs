@@ -1,27 +1,25 @@
 using Microsoft.AspNetCore.Mvc;
+using System;
+using System.Linq;
 using LibraryManagement.Models;
 using LibraryManagement.ViewModels;
+using LibraryManagement.Data;
 
 namespace LibraryManagement.Controllers
 {
-    public class CustomerController : Controller
+    public class CustomersController : Controller
     {
+        private readonly AppDbContext _dbContext;
+
+        public CustomersController(AppDbContext dbContext)
+        {
+            _dbContext = dbContext;
+        }
         public IActionResult Details(int id)
         {
-            // Simulated data access
-            Customers customer = new Customers
-            {
-                CustomerId = id,
-                Name = "John Doe"
-            };
+            var customers = _dbContext.Customers.ToList();
 
-            CustomersViewModel viewModel = new CustomersViewModel
-            {
-                CustomerId = customer.CustomerId,
-                Name = customer.Name
-            };
-
-            return View(viewModel);
+            return View(customers);
         }
     }
 }

@@ -1,5 +1,21 @@
-<!-- Details.cshtml in LibraryManagement/Views/Book folder-->
-@model LibraryManagement.ViewModels.CustomersViewModel
+@model List<LibraryManagement.Models.Customers>
 
-<h1>@Model.CustomerId</h1>
-<p>CustomerName: @Model.Name</p>
+<h1>Customers List</h1>
+
+<table>
+    <thead>
+    <tr>
+        <th>ID</th>
+        <th>Title</th>
+    </tr>
+    </thead>
+    <tbody>
+    @foreach (var customers in Model)
+    {
+        <tr>
+            <td>@customers.CustomerId</td>
+            <td>@customers.Name</td>
+        </tr>
+    }
+    </tbody>
+</table>
