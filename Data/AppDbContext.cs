@@ -14,6 +14,7 @@ namespace LibraryManagement.Data
 
         public DbSet<Models.Books> Books { get; set; }
         public DbSet<Models.Authors> Authors { get; set; }
+        public DbSet<Models.Customers> Customers { get; set; }
         public DbSet<Models.LibraryBranches> LibraryBranches { get; set; }
         
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
