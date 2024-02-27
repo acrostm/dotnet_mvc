@@ -9,13 +9,13 @@ namespace LibraryManagement.Controllers
         public IActionResult Details(int id)
         {
             // Simulated data access
-            LibraryBranch branch = new LibraryBranch
+            LibraryBranches branch = new LibraryBranches
             {
                 LibraryBranchId = id,
                 BranchName = "Main Branch"
             };
 
-            LibraryBranchViewModel viewModel = new LibraryBranchViewModel
+            LibraryBranchesViewModel viewModel = new LibraryBranchesViewModel
             {
                 LibraryBranchId = branch.LibraryBranchId,
                 Name = branch.BranchName

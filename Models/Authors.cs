@@ -1,12 +1,12 @@
-// Author.cs
+// Authors.cs
 using System.ComponentModel.DataAnnotations;
 
 namespace LibraryManagement.Models
 {
-    public class Author
+    public class Authors
     {
         [Key]
         public int AuthorId { get; set; }
-        public string Name { get; set; }
+        public string? Name { get; set; }
     }
 }

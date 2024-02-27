@@ -12,9 +12,9 @@ namespace LibraryManagement.Data
             _configuration = configuration;
         }
 
-        public DbSet<Models.Book> Book { get; set; }
-        public DbSet<Models.Author> Author { get; set; }
-        public DbSet<Models.LibraryBranch> LibraryBranch { get; set; }
+        public DbSet<Models.Books> Books { get; set; }
+        public DbSet<Models.Authors> Authors { get; set; }
+        public DbSet<Models.LibraryBranches> LibraryBranches { get; set; }
         
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {

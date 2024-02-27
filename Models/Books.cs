@@ -1,10 +1,10 @@
-// Book.cs
+// Books.cs
 using System;
 using System.ComponentModel.DataAnnotations;
 
 namespace LibraryManagement.Models
 {
-    public class Book
+    public class Books
     {
         [Key]
         public int BookId { get; set; }

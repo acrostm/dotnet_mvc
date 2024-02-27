@@ -10,7 +10,7 @@ namespace LibraryManagement.Controllers
         public IActionResult Details(int id)
         {
             // Simulated data access
-            Book book = new Book
+            Books book = new Books
             {
                 BookId = id,
                 Title = "Sample Book",
@@ -18,19 +18,19 @@ namespace LibraryManagement.Controllers
                 LibraryBranchId = 1
             };
 
-            Author author = new Author
+            Authors author = new Authors
             {
                 AuthorId = 1,
                 Name = "John Doe"
             };
 
-            LibraryBranch branch = new LibraryBranch
+            LibraryBranches branch = new LibraryBranches
             {
                 LibraryBranchId = 1,
                 BranchName = "Main Branch"
             };
 
-            BookViewModel viewModel = new BookViewModel
+            BooksViewModel viewModel = new BooksViewModel
             {
                 BookId = book.BookId,
                 Title = book.Title,

@@ -1,9 +1,9 @@
 // CustomerViewModel.cs
 namespace LibraryManagement.ViewModels
 {
-    public class CustomerViewModel
+    public class CustomersViewModel
     {
         public int CustomerId { get; set; }
-        public string Name { get; set; }
+        public string? Name { get; set; }
     }
 }

@@ -9,13 +9,13 @@ namespace LibraryManagement.Controllers
         public IActionResult Details(int id)
         {
             // Simulated data access
-            Customer customer = new Customer
+            Customers customer = new Customers
             {
                 CustomerId = id,
                 Name = "John Doe"
             };
 
-            CustomerViewModel viewModel = new CustomerViewModel
+            CustomersViewModel viewModel = new CustomersViewModel
             {
                 CustomerId = customer.CustomerId,
                 Name = customer.Name

@@ -3,6 +3,7 @@ using System;
 using LibraryManagement.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -10,9 +11,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace LibraryManagement.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    partial class AppDbContextModelSnapshot : ModelSnapshot
+    [Migration("20240227104943_SecondUpdate")]
+    partial class SecondUpdate
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder.HasAnnotation("ProductVersion", "8.0.2");
@@ -29,7 +32,7 @@ namespace LibraryManagement.Migrations
 
                     b.HasKey("AuthorId");
 
-                    b.ToTable("Authors");
+                    b.ToTable("Author");
                 });
 
             modelBuilder.Entity("LibraryManagement.Models.Books", b =>
@@ -53,7 +56,7 @@ namespace LibraryManagement.Migrations
 
                     b.HasKey("BookId");
 
-                    b.ToTable("Books");
+                    b.ToTable("Book");
                 });
 
             modelBuilder.Entity("LibraryManagement.Models.LibraryBranches", b =>
@@ -68,7 +71,7 @@ namespace LibraryManagement.Migrations
 
                     b.HasKey("LibraryBranchId");
 
-                    b.ToTable("LibraryBranches");
+                    b.ToTable("LibraryBranch");
                 });
 #pragma warning restore 612, 618
         }
