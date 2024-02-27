@@ -20,7 +20,7 @@ namespace LibraryManagement.Controllers
         public IActionResult Index()
         {
             var books = _dbContext.Books
-                .Include(b => b.Branch)
+                .Include(b => b.LibraryBranch)
                 .ToList();
 
             return View(books);

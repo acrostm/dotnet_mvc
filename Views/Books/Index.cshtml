@@ -22,7 +22,7 @@
             <tr>
                 <td>@book.BookId</td>
                 <td>@book.Title</td>
-                <td>@(book.Branch != null ? book.Branch.BranchName : "N/A")</td>
+                <td>@(book.LibraryBranch != null ? book.LibraryBranch.BranchName : "N/A")</td> <!-- 修改此行 -->
                 <td>
                     <a asp-action="Edit" asp-route-id="@book.BookId">Edit</a>
                 </td>
