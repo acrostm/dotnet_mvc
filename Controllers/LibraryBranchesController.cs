@@ -16,17 +16,12 @@ namespace LibraryManagement.Controllers
             _dbContext = dbContext;
         }
 
-        public IActionResult Details()
+        public IActionResult Index()
         {
-            var branches = _dbContext.LibraryBranches.ToList();
+            var branch = _dbContext.LibraryBranches.ToList();
 
-            // LibraryBranchesViewModel viewModel = new LibraryBranchesViewModel
-            // {
-            //     LibraryBranchId = branch.LibraryBranchId,
-            //     Name = branch.BranchName
-            // };
 
-            return View(branches);
+            return View(branch);
         }
     }
 }

@@ -1,0 +1,31 @@
+<!-- Index.cshtml -->
+@model IEnumerable<LibraryManagement.Models.LibraryBranches>
+
+<h1>Library Branch List</h1>
+
+<p>
+    <a asp-action="Create" class="btn btn-primary">Create New Branch</a>
+</p>
+
+<table class="table">
+    <thead>
+    <tr>
+        <th>ID</th>
+        <th>Branch Name</th>
+        <th></th>
+    </tr>
+    </thead>
+    <tbody>
+    @foreach (var branch in Model)
+    {
+        <tr>
+            <td>@branch.LibraryBranchId</td>
+            <td>@branch.BranchName</td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@branch.LibraryBranchId">Edit</a> |
+                <a asp-action="Delete" asp-route-id="@branch.BranchName">Delete</a>
+            </td>
+        </tr>
+    }
+    </tbody>
+</table>

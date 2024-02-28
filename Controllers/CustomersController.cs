@@ -15,7 +15,7 @@ namespace LibraryManagement.Controllers
         {
             _dbContext = dbContext;
         }
-        public IActionResult Details(int id)
+        public IActionResult Index(int id)
         {
             var customers = _dbContext.Customers.ToList();
 

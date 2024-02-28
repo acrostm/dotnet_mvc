@@ -12,6 +12,7 @@
         <tr>
             <th>ID</th>
             <th>Title</th>
+            <th>Author</th>
             <th>Branch</th>
             <th></th>
         </tr>
@@ -22,9 +23,11 @@
             <tr>
                 <td>@book.BookId</td>
                 <td>@book.Title</td>
-                <td>@(book.LibraryBranch != null ? book.LibraryBranch.BranchName : "N/A")</td> <!-- 修改此行 -->
+                <td>@(book.Author != null ? book.Author.Name : "N/A")</td>
+                <td>@(book.LibraryBranch != null ? book.LibraryBranch.BranchName : "N/A")</td>
                 <td>
-                    <a asp-action="Edit" asp-route-id="@book.BookId">Edit</a>
+                    <a asp-action="Edit" asp-route-id="@book.BookId">Edit</a> | 
+                    <a asp-action="Delete" asp-route-id="@book.BookId">Delete</a>
                 </td>
             </tr>
         }

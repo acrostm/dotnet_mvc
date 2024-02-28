@@ -16,17 +16,12 @@ namespace LibraryManagement.Controllers
             _dbContext = dbContext;
         }
 
-        public async Task<IActionResult> Index(string searchString)
+        public IActionResult Index()
         {
             var authors = from a in _dbContext.Authors
                           select a;
 
-            if (!string.IsNullOrEmpty(searchString))
-            {
-                authors = authors.Where(a => a.Name.Contains(searchString));
-            }
-
-            return View(await authors.ToListAsync());
+            return View(authors);
         }
 
         public IActionResult Create()
@@ -35,7 +30,6 @@ namespace LibraryManagement.Controllers
         }
 
         [HttpPost]
-        [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create([Bind("AuthorId,Name")] Authors author)
         {
             if (ModelState.IsValid)
@@ -71,7 +65,6 @@ namespace LibraryManagement.Controllers
         }
 
         [HttpPost]
-        [ValidateAntiForgeryToken]
         public async Task<IActionResult> Edit(int id, [Bind("AuthorId,Name")] Authors author)
         {
             if (id != author.AuthorId)
@@ -121,7 +114,6 @@ namespace LibraryManagement.Controllers
         }
 
         [HttpPost, ActionName("Delete")]
-        [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
             var author = await _dbContext.Authors.FindAsync(id);
