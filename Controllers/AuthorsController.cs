@@ -18,8 +18,7 @@ namespace LibraryManagement.Controllers
 
         public IActionResult Index()
         {
-            var authors = from a in _dbContext.Authors
-                          select a;
+            var authors = _dbContext.Authors.ToList();
 
             return View(authors);
         }
@@ -87,7 +86,14 @@ namespace LibraryManagement.Controllers
                     }
                     else
                     {
-                        throw;
+                        if (!AuthorExists(author.AuthorId))
+                        {
+                            return NotFound();
+                        }
+                        else
+                        {
+                            throw;
+                        }
                     }
                 }
                 return RedirectToAction(nameof(Index));
